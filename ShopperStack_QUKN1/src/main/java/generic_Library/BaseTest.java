@@ -21,6 +21,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import element_Repository.BasePage;
+import element_Repository.CreateAccount;
 import element_Repository.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -73,14 +74,16 @@ public class BaseTest implements FrameWorkConstants {
 
 		test = reports.createTest(method.getName());
 		base_Page = new BasePage(driver);
-		base_Page.getLoginButton().click();
+		base_Page.getWelcomepageLoginButton().click();
 		LoginPage login_Page = new LoginPage(driver);
 		login_Page.performLogin(data_Utility.getDataFromProperties(email_Key),data_Utility.getDataFromProperties(password_Key));
 		Reporter.log("Performing Login", true);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait_Time));
 	}
-
+	
 	@AfterMethod(alwaysRun = true)
 	public void performingLogout() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait_Time));
 		base_Page.performLogout();
 		Reporter.log("Performing Logout", true);
 	}

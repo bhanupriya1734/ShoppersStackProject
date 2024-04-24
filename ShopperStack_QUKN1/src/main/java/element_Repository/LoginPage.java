@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
 	
+	@FindBy(xpath="//span[text()='Login']")
+	private WebElement LoginpageLoginButton;
+	
 	@FindBy(xpath="//input[@id='Email']")
 	private WebElement emailTextField;
 
@@ -29,6 +32,10 @@ public class LoginPage extends BasePage{
 
 	public WebElement getLoginButton() {
 		return loginButton;
+	}
+	
+	public WebElement getLoginpageLoginButton() {
+		return LoginpageLoginButton;
 	}
 	
 	public void performLogin(String email, String password)
